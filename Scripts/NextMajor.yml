@@ -24,3 +24,20 @@ steps:
     alsourcepath: 'MainApp/app.json'
     appversiontemplate: '?.?.[yyyyWW].*'
     appfilenametemplate: '%APP_PUBLISHER%_%APP_NAME%_%APP_VERSION%.app'
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- task: ALOpsAgentMaintenance@1
+  inputs:
+    removeoldtasks: true
+    removeunusedcontainers: true
+    pruneimagesdayscreated: '20'
+    pruneimagesosbased: true
+    removebcartifacts: true
+    failonwarnings: true
+
+#>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+- task: ALOpsInfo@1
+  displayName: 'ALOps - Show Environment Information'
+  condition: always()
